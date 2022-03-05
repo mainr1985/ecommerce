@@ -1,7 +1,8 @@
 <?php 
 
 require_once("vendor/autoload.php");
-//use Hcode\DB;
+use \Slim\Slim;
+use \Hcode\Page;
 
 $app = new \Slim\Slim();
 
@@ -9,11 +10,10 @@ $app->config('debug', true);
 
 $app->get('/', function() {
     
-	//echo "OK";
-	$sql = new Hcode\DB\Sql(); //instanciando a classe sql pra testar conexão com o db
-	$results = $sql->select ("SELECT * FROM tb_users"); //$sql->select está chamando o método 'select' da classe SQL pra realizar a query
-	echo json_encode($results);
+	$page = new Page();
 
+	$page->setTpl("index");
+	
 });
 
 $app->run();
