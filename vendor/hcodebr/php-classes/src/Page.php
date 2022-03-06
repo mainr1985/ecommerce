@@ -25,8 +25,9 @@ class Page
 
         //vai usar o rainTPL aqui!
         $config = array (
-                    "tpl_dir" => $_SERVER["DOCUMENT_ROOT"] . $tpl_dir, //assim o php vai procurar nas pastas no root do projeto
-                    "cache_dir" => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/",
+                    "base_url"      => null,/*tirar se for usar o vhost*/
+                    "tpl_dir" => $_SERVER["DOCUMENT_ROOT"] . "/ecommerce/" . $tpl_dir, //assim o php vai procurar nas pastas no root do projeto
+                    "cache_dir" => $_SERVER["DOCUMENT_ROOT"] . "/ecommerce/views-cache/",
                     "debug" => false //true deixa mais lerdo
         );
        
@@ -35,7 +36,7 @@ class Page
         $this->tpl = new Tpl; //transformando em atributo pra que possa ser acessado de outros métodos
 
         //desenhando o template - toda vez que for instanciada a classe Page, vai vir pra cá pra desenhar o template na tela.
-        $this->tpl->draw("header"); // AINDA NÃO EXISTE, VOU CRIAR
+        $this->tpl->draw("header"); 
     }
 
     //método para verificar os dados recebidos e designar valores
@@ -55,15 +56,14 @@ class Page
      {
         $this->setData($data);
      
-        //desenhando o template - toda vez que for instanciada a classe Page, vai vir pra cá pra desenhar o template na tela.
-        return $this->tpl->draw($name,$returnHTML); // AINDA NÃO EXISTE, VOU CRIAR
+        return $this->tpl->draw($name,$returnHTML); //desenhando o template - toda vez que for instanciada a classe Page, vai vir pra cá pra desenhar o template na tela.
     }
 
     //método mágico destrutor, último a ser executado
     public function __destruct()
     {
         //aqui será adicionado o footer do template - só quando a página sair da memória do php
-        $this->tpl->draw("footer"); // AINDA NÃO EXISTE, VOU CRIAR
+        $this->tpl->draw("footer"); 
     }
 }
 ?>
